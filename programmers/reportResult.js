@@ -1,15 +1,18 @@
-const a = ["mislav", "stanko", "mislav", "ana"];
-const _a = ["stanko", "ana", "mislav"];
+function solution(id_list, report, k) {
+    var logs = [...new Set(report)].map(l=>l.split(" "));
+    
+    let reported, answer;
+    (reported=[]).length = (answer=[]).length = id_list.length;
 
-// function s(p,c){
-//     var a = '';
-
-//     p.find(p=>)
-
-//     return a;
-// }
-
-
-var s=(_,$)=>_.find(_=>!$[_]--,$.map(_=>$[_]=($[_]|0)+1));
-
-console.log(s(a,_a));
+    reported.fill(0);
+    answer.fill(0);
+    
+    logs.forEach(l => reported[id_list.indexOf(l[1])]++)
+    
+    for(var i=0; i<reported.length; i++)
+       if(reported[i] >= k)
+            logs.filter(l => l[1] == id_list[i])
+               .forEach(l => answer[id_list.indexOf(l[0])]++);
+    
+    return answer;
+}
